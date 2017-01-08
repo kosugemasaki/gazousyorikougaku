@@ -1,0 +1,55 @@
+#課題2
+#閾値処理
+
+・課題内容
+閾値のパターンを4パターン設定し、閾値処理を行う。
+・実行結果
+原画像および設定した4つの閾値で処理された画像を図.1~5に示す。
+
+![原画像](https://github.com/kosugemasaki/gazousyorikougaku/blob/master/%E8%AA%B2%E9%A1%8C3/kadai3-1.png?raw=true)
+図.1 原画像
+
+![原画像](https://github.com/kosugemasaki/gazousyorikougaku/blob/master/%E8%AA%B2%E9%A1%8C3/kadai3-2.png?raw=true)
+図.2　閾値64の画像
+
+![原画像](https://github.com/kosugemasaki/gazousyorikougaku/blob/master/%E8%AA%B2%E9%A1%8C3/kadai3-3.png?raw=true)
+図.3　閾値96の画像
+
+![原画像](https://github.com/kosugemasaki/gazousyorikougaku/blob/master/%E8%AA%B2%E9%A1%8C3/kadai3-4.png?raw=true)
+図.4　閾値128の画像
+
+![原画像](https://github.com/kosugemasaki/gazousyorikougaku/blob/master/%E8%AA%B2%E9%A1%8C3/kadai3-5.png?raw=true)
+図.5　閾値160の画像
+
+・考察　
+　閾値を設定することで原画像のそれぞれの画素の輝度値が閾値より低い場合は0(白)、輝度値が閾値以上の場合は1(黒)として分けることができる。
+色の濃度が最大255とすると、真ん中は128となるので閾値を128に設定すると最も人間が見て原画像の輪郭をはっきりと映し出した画像にすることができる。
+このことは図.2~5を見るとよくわかる。しかし濃度の薄い（明るい色）の画像では閾値を128よりも下げ、濃度の濃い（暗い色）の画像では閾値を128よりも
+上げることで、人間が見てより原画像の輪郭をはっきりと映し出したような画像にすることができる。
+
+・ソースコード
+閾値処理を行ったプログラムのソースコードを以下に示す。
+
+clear; % 変数のオールクリア
+
+ORG=imread('FullSizeRender.jpg'); % 原画像の入力
+ORG= rgb2gray(ORG); % カラー画像を白黒濃淡画像へ変換
+
+imagesc(ORG); colormap(gray); colorbar; % 画像の表示
+pause;
+
+IMG = ORG > 64; % 輝度値が64以上の画素を1，その他を0に変換
+imagesc(IMG); colormap(gray); colorbar;
+pause;
+
+IMG = ORG > 96;
+imagesc(IMG); colormap(gray); colorbar;
+pause;
+
+IMG = ORG > 128;
+imagesc(IMG); colormap(gray); colorbar;
+pause;
+
+IMG = ORG > 160;
+imagesc(IMG); colormap(gray); colorbar;
+
