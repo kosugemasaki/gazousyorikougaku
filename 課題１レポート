@@ -1,0 +1,65 @@
+#課題1
+#（標本化間隔と空間解像度）
+
+課題内容
+　原画像をダウンサンプリングして（標本化間隔を大きくして）表示せよ。
+
+実行結果
+　原画像のサンプリング間隔を1/2、1/4、1/8、1/16、1/32に変更したときの画像の変化を図.1~6に示す。
+
+
+ (https://github.com/kosugemasaki/gazousyorikougaku/blob/master/%E8%AA%B2%E9%A1%8C%EF%BC%91/kadai1-1.png)
+図.1　原画像
+
+ 
+図.2　サンプリング間隔1/2の画像
+
+ 
+図.3　サンプリング間隔1/4の画像
+
+
+ 
+図.4　サンプリング間隔1/8の画像
+
+ 
+図.5　サンプリング間隔1/16の画像
+
+
+ 
+図.6　サンプリング間隔1/32の画像
+
+考察
+　サンプリングの間隔を大きくするということは原画像を1/2に縮小し、それを2倍の大きさ（元の大きさ）で表示させることと同じ意味である。画像を1/2に縮小することで画素数は元の半分になり、それを2倍の大きさで表示させることで元の画像と同じ大きさで画素数半分の画像になる。そのためサンプリング間隔を大きくすることで、画素数が減り画像にモザイクがかかったように見えるようになる。
+
+ソースコード
+　原画像をダウンサンプリングするプログラムを以下に示す。
+clear; % 変数のオールクリア
+
+ORG=imread('FullSizeRender.jpg'); % 原画像の入力
+imagesc(ORG); axis image; % 画像の表示
+pause; % 一時停止
+
+IMG = imresize(ORG,0.5); % 画像の縮小
+IMG2 = imresize(IMG,2,'box'); % 画像の拡大
+imagesc(IMG2); axis image; % 画像の表示
+pause; % 一時停止
+
+IMG = imresize(IMG,0.5); % 画像の縮小
+IMG2 = imresize(IMG,4,'box'); % 画像の拡大
+imagesc(IMG2); axis image; % 画像の表示
+pause; % 一時停止
+
+IMG = imresize(IMG,0.5); % 画像の縮小
+IMG2 = imresize(IMG,8,'box'); % 画像の拡大
+imagesc(IMG2); axis image; % 画像の表示
+pause; % 一時停止
+
+IMG = imresize(IMG,0.5); % 画像の縮小
+IMG2 = imresize(IMG,16,'box'); % 画像の拡大
+imagesc(IMG2); axis image; % 画像の表示
+pause; % 一時停止
+
+IMG = imresize(IMG,0.5); % 画像の縮小
+IMG2 = imresize(IMG,32,'box'); % 画像の拡大
+imagesc(IMG2); axis image; % 画像の表示
+
