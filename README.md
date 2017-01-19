@@ -1,1 +1,2 @@
-# gazousyorikougaku
+#画像処理工学
+#課題提出用リポジトリ
